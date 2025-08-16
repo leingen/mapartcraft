@@ -367,10 +367,29 @@ class Map_NBT {
     let physicalColumn = [];
     let currentHeight;
     switch (optionValue_staircasing) {
-      case MapModes.SCHEMATIC_NBT.staircaseModes.OFF.uniqueId:
-      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_871.uniqueId: {
+      case MapModes.SCHEMATIC_NBT.staircaseModes.OFF.uniqueId: {
         // start at y = 2 for flat maps; this covers the cases of support blocks 1 and or 2 blocks below
         currentHeight = 2;
+        break;
+      }
+      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_WE_871.uniqueId: {
+        // start at y = 2 
+        currentHeight = 2;
+
+        // From column 8, increase height by 1 for each 7 columns
+        if (columnNumber >= 8) {
+          currentHeight += Math.min(18, Math.floor((columnNumber - 8) / 7) + 1);
+        }
+        break;
+      }
+      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_27.uniqueId: {
+        // start at y = 2 
+        currentHeight = 20;
+
+        // From column 2, decrease height by 1 for each 7 columns
+        if (columnNumber >= 2) {
+          currentHeight -= Math.floor((columnNumber - 2) / 7) + 1;
+        }
         break;
       }
       case MapModes.SCHEMATIC_NBT.staircaseModes.CLASSIC.uniqueId:
@@ -420,13 +439,13 @@ class Map_NBT {
         }
       }
 
-      if (
-        optionValue_staircasing === MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_871.uniqueId &&
-        rowNumber === 0 &&
-        columnNumber >= 8
-      ) {
-        currentHeight += Math.min(18, Math.floor((columnNumber - 8) / 7) + 1);
-      }
+      // if (
+      //   optionValue_staircasing === MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_WE_871.uniqueId &&
+      //   rowNumber === 0 &&
+      //   columnNumber >= 8
+      // ) {
+      //   currentHeight += Math.min(18, Math.floor((columnNumber - 8) / 7) + 1);
+      // }
 
       physicalColumn.push(this.returnPhysicalBlock(columnNumber, currentHeight, rowNumber + 1, coloursLayoutBlock.colourSetId));
       // the + 1 is because the noobline offsets everything South one block
@@ -630,7 +649,8 @@ class Map_NBT {
       case MapModes.SCHEMATIC_NBT.staircaseModes.OFF.uniqueId:
       case MapModes.SCHEMATIC_NBT.staircaseModes.FULL_DARK.uniqueId:
       case MapModes.SCHEMATIC_NBT.staircaseModes.FULL_LIGHT.uniqueId:
-      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_871.uniqueId: {
+      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_WE_871.uniqueId:
+        case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_27.uniqueId: {
         break;
       }
       default: {

@@ -33,9 +33,15 @@
         "toneKeys": ["light"],
         "extra": true
       },
-      "STAGGERED_871": {
+      "STAGGERED_WE_871": {
         "uniqueId": 11,
-        "localeKey": "MAP-SETTINGS/3D/STAGGERED_871",
+        "localeKey": "MAP-SETTINGS/3D/STAGGERED_WE_871",
+        "toneKeys": ["normal"],
+        "extra": false
+      },
+      "STAGGERED_EW_27": {
+        "uniqueId": 12,
+        "localeKey": "MAP-SETTINGS/3D/STAGGERED_EW_27",
         "toneKeys": ["normal"],
         "extra": false
       }

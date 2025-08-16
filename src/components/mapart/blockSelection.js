@@ -25,7 +25,8 @@ class BlockSelection extends Component {
     switch (optionValue_staircasing) {
       case MapModes.SCHEMATIC_NBT.staircaseModes.OFF.uniqueId:
       case MapModes.MAPDAT.staircaseModes.OFF.uniqueId:
-      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_871.uniqueId: {
+      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_WE_871.uniqueId:
+      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_27.uniqueId: {
         background = this.cssRGB(colourSet.tonesRGB.normal);
         break;
       }
