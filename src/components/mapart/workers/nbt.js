@@ -367,7 +367,8 @@ class Map_NBT {
     let physicalColumn = [];
     let currentHeight;
     switch (optionValue_staircasing) {
-      case MapModes.SCHEMATIC_NBT.staircaseModes.OFF.uniqueId: {
+      case MapModes.SCHEMATIC_NBT.staircaseModes.OFF.uniqueId:
+      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_871.uniqueId: {
         // start at y = 2 for flat maps; this covers the cases of support blocks 1 and or 2 blocks below
         currentHeight = 2;
         break;
@@ -417,6 +418,14 @@ class Map_NBT {
         default: {
           throw new Error("Unknown tone type");
         }
+      }
+
+      if (
+        optionValue_staircasing === MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_871.uniqueId &&
+        rowNumber === 0 &&
+        columnNumber >= 8
+      ) {
+        currentHeight += Math.min(18, Math.floor((columnNumber - 8) / 7) + 1);
       }
 
       physicalColumn.push(this.returnPhysicalBlock(columnNumber, currentHeight, rowNumber + 1, coloursLayoutBlock.colourSetId));
@@ -620,7 +629,8 @@ class Map_NBT {
       }
       case MapModes.SCHEMATIC_NBT.staircaseModes.OFF.uniqueId:
       case MapModes.SCHEMATIC_NBT.staircaseModes.FULL_DARK.uniqueId:
-      case MapModes.SCHEMATIC_NBT.staircaseModes.FULL_LIGHT.uniqueId: {
+      case MapModes.SCHEMATIC_NBT.staircaseModes.FULL_LIGHT.uniqueId:
+      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_871.uniqueId: {
         break;
       }
       default: {

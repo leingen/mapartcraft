@@ -122,6 +122,7 @@ class MapPreview extends Component {
       let coloursRGB_colourSet = [];
       switch (optionValue_staircasing) {
         case MapModes.SCHEMATIC_NBT.staircaseModes.OFF.uniqueId:
+        case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_871.uniqueId:
         case MapModes.SCHEMATIC_NBT.staircaseModes.CLASSIC.uniqueId:
         case MapModes.SCHEMATIC_NBT.staircaseModes.VALLEY.uniqueId:
         case MapModes.MAPDAT.staircaseModes.OFF.uniqueId: {

@@ -32,6 +32,12 @@
         "localeKey": "MAP-SETTINGS/3D/FULL-LIGHT",
         "toneKeys": ["light"],
         "extra": true
+      },
+      "STAGGERED_871": {
+        "uniqueId": 11,
+        "localeKey": "MAP-SETTINGS/3D/STAGGERED_871",
+        "toneKeys": ["normal"],
+        "extra": false
       }
     }
   },
