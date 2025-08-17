@@ -79,7 +79,8 @@
             }
         },
         "mapdatId": 1,
-        "colourName": "Grass"
+        "colourName": "Grass",
+        "transparent": 0
     },
     "1": {
         "tonesRGB": {
@@ -435,7 +436,8 @@
             }
         },
         "mapdatId": 2,
-        "colourName": "Sand"
+        "colourName": "Sand",
+        "transparent": 0
     },
     "2": {
         "tonesRGB": {
@@ -532,7 +534,8 @@
             }
         },
         "mapdatId": 3,
-        "colourName": "Cobweb"
+        "colourName": "Cobweb",
+        "transparent": 0
     },
     "3": {
         "tonesRGB": {
@@ -656,7 +659,8 @@
             }
         },
         "mapdatId": 4,
-        "colourName": "TNT"
+        "colourName": "TNT",
+        "transparent": 0
     },
     "4": {
         "tonesRGB": {
@@ -755,7 +759,8 @@
             }
         },
         "mapdatId": 5,
-        "colourName": "Ice"
+        "colourName": "Ice",
+        "transparent": 0
     },
     "5": {
         "tonesRGB": {
@@ -929,7 +934,8 @@
             }
         },
         "mapdatId": 6,
-        "colourName": "Iron"
+        "colourName": "Iron",
+        "transparent": 0
     },
     "6": {
         "tonesRGB": {
@@ -1241,7 +1247,8 @@
             }
         },
         "mapdatId": 7,
-        "colourName": "Leaves"
+        "colourName": "Leaves",
+        "transparent": 0
     },
     "7": {
         "tonesRGB": {
@@ -1293,7 +1300,8 @@
             }
         },
         "mapdatId": 9,
-        "colourName": "Clay"
+        "colourName": "Clay",
+        "transparent": 0
     },
     "8": {
         "tonesRGB": {
@@ -1621,7 +1629,8 @@
             }
         },
         "mapdatId": 10,
-        "colourName": "Dirt"
+        "colourName": "Dirt",
+        "transparent": 0
     },
     "9": {
         "tonesRGB": {
@@ -2076,7 +2085,8 @@
             }
         },
         "mapdatId": 11,
-        "colourName": "Stone"
+        "colourName": "Stone",
+        "transparent": 0
     },
     "10": {
         "tonesRGB": {
@@ -2288,7 +2298,8 @@
             }
         },
         "mapdatId": 12,
-        "colourName": "Water"
+        "colourName": "Water",
+        "transparent": 0
     },
     "11": {
         "tonesRGB": {
@@ -2519,7 +2530,8 @@
             }
         },
         "mapdatId": 13,
-        "colourName": "Oak"
+        "colourName": "Oak",
+        "transparent": 0
     },
     "12": {
         "tonesRGB": {
@@ -2781,7 +2793,8 @@
             }
         },
         "mapdatId": 14,
-        "colourName": "Birch"
+        "colourName": "Birch",
+        "transparent": 0
     },
     "13": {
         "tonesRGB": {
@@ -3032,7 +3045,8 @@
             }
         },
         "mapdatId": 8,
-        "colourName": "White Wool"
+        "colourName": "White Wool",
+        "transparent": 0
     },
     "14": {
         "tonesRGB": {
@@ -3579,7 +3593,8 @@
             }
         },
         "mapdatId": 15,
-        "colourName": "Orange Wool"
+        "colourName": "Orange Wool",
+        "transparent": 0
     },
     "15": {
         "tonesRGB": {
@@ -3824,7 +3839,8 @@
             }
         },
         "mapdatId": 16,
-        "colourName": "Magenta Wool"
+        "colourName": "Magenta Wool",
+        "transparent": 0
     },
     "16": {
         "tonesRGB": {
@@ -4041,7 +4057,8 @@
             }
         },
         "mapdatId": 17,
-        "colourName": "Light Blue Wool"
+        "colourName": "Light Blue Wool",
+        "transparent": 0
     },
     "17": {
         "tonesRGB": {
@@ -4384,7 +4401,8 @@
             }
         },
         "mapdatId": 18,
-        "colourName": "Yellow Wool"
+        "colourName": "Yellow Wool",
+        "transparent": 0
     },
     "18": {
         "tonesRGB": {
@@ -4608,7 +4626,8 @@
             }
         },
         "mapdatId": 19,
-        "colourName": "Lime Wool"
+        "colourName": "Lime Wool",
+        "transparent": 0
     },
     "19": {
         "tonesRGB": {
@@ -4840,7 +4859,8 @@
             }
         },
         "mapdatId": 20,
-        "colourName": "Pink Wool"
+        "colourName": "Pink Wool",
+        "transparent": 0
     },
     "20": {
         "tonesRGB": {
@@ -5194,7 +5214,8 @@
             }
         },
         "mapdatId": 21,
-        "colourName": "Gray Wool"
+        "colourName": "Gray Wool",
+        "transparent": 0
     },
     "21": {
         "tonesRGB": {
@@ -5420,7 +5441,8 @@
             }
         },
         "mapdatId": 22,
-        "colourName": "Light Gray Wool"
+        "colourName": "Light Gray Wool",
+        "transparent": 0
     },
     "22": {
         "tonesRGB": {
@@ -5704,7 +5726,8 @@
             }
         },
         "mapdatId": 23,
-        "colourName": "Cyan Wool"
+        "colourName": "Cyan Wool",
+        "transparent": 0
     },
     "23": {
         "tonesRGB": {
@@ -5944,7 +5967,8 @@
             }
         },
         "mapdatId": 24,
-        "colourName": "Purple Wool"
+        "colourName": "Purple Wool",
+        "transparent": 0
     },
     "24": {
         "tonesRGB": {
@@ -6141,7 +6165,8 @@
             }
         },
         "mapdatId": 25,
-        "colourName": "Blue Wool"
+        "colourName": "Blue Wool",
+        "transparent": 0
     },
     "25": {
         "tonesRGB": {
@@ -6539,7 +6564,8 @@
             }
         },
         "mapdatId": 26,
-        "colourName": "Brown Wool"
+        "colourName": "Brown Wool",
+        "transparent": 0
     },
     "26": {
         "tonesRGB": {
@@ -6796,7 +6822,8 @@
             }
         },
         "mapdatId": 27,
-        "colourName": "Green Wool"
+        "colourName": "Green Wool",
+        "transparent": 0
     },
     "27": {
         "tonesRGB": {
@@ -7186,7 +7213,8 @@
             }
         },
         "mapdatId": 28,
-        "colourName": "Red Wool"
+        "colourName": "Red Wool",
+        "transparent": 0
     },
     "28": {
         "tonesRGB": {
@@ -7620,7 +7648,8 @@
             }
         },
         "mapdatId": 29,
-        "colourName": "Black Wool"
+        "colourName": "Black Wool",
+        "transparent": 0
     },
     "29": {
         "tonesRGB": {
@@ -7715,7 +7744,8 @@
             }
         },
         "mapdatId": 30,
-        "colourName": "Gold"
+        "colourName": "Gold",
+        "transparent": 0
     },
     "30": {
         "tonesRGB": {
@@ -7895,7 +7925,8 @@
             }
         },
         "mapdatId": 31,
-        "colourName": "Diamond"
+        "colourName": "Diamond",
+        "transparent": 0
     },
     "31": {
         "tonesRGB": {
@@ -7947,7 +7978,8 @@
             }
         },
         "mapdatId": 32,
-        "colourName": "Lapis"
+        "colourName": "Lapis",
+        "transparent": 0
     },
     "32": {
         "tonesRGB": {
@@ -7999,7 +8031,8 @@
             }
         },
         "mapdatId": 33,
-        "colourName": "Emerald"
+        "colourName": "Emerald",
+        "transparent": 0
     },
     "33": {
         "tonesRGB": {
@@ -8269,7 +8302,8 @@
             }
         },
         "mapdatId": 34,
-        "colourName": "Spruce"
+        "colourName": "Spruce",
+        "transparent": 0
     },
     "34": {
         "tonesRGB": {
@@ -8493,7 +8527,8 @@
             }
         },
         "mapdatId": 35,
-        "colourName": "Nether"
+        "colourName": "Nether",
+        "transparent": 0
     },
     "35": {
         "tonesRGB": {
@@ -8653,7 +8688,8 @@
             }
         },
         "mapdatId": 36,
-        "colourName": "White Terracotta"
+        "colourName": "White Terracotta",
+        "transparent": 0
     },
     "36": {
         "tonesRGB": {
@@ -8778,7 +8814,8 @@
             }
         },
         "mapdatId": 37,
-        "colourName": "Orange Terracotta"
+        "colourName": "Orange Terracotta",
+        "transparent": 0
     },
     "37": {
         "tonesRGB": {
@@ -8835,7 +8872,8 @@
             }
         },
         "mapdatId": 38,
-        "colourName": "Magenta Terracotta"
+        "colourName": "Magenta Terracotta",
+        "transparent": 0
     },
     "38": {
         "tonesRGB": {
@@ -8892,7 +8930,8 @@
             }
         },
         "mapdatId": 39,
-        "colourName": "Light Blue Terracotta"
+        "colourName": "Light Blue Terracotta",
+        "transparent": 0
     },
     "39": {
         "tonesRGB": {
@@ -8949,7 +8988,8 @@
             }
         },
         "mapdatId": 40,
-        "colourName": "Yellow Terracotta"
+        "colourName": "Yellow Terracotta",
+        "transparent": 0
     },
     "40": {
         "tonesRGB": {
@@ -9006,7 +9046,8 @@
             }
         },
         "mapdatId": 41,
-        "colourName": "Lime Terracotta"
+        "colourName": "Lime Terracotta",
+        "transparent": 0
     },
     "41": {
         "tonesRGB": {
@@ -9097,7 +9138,8 @@
             }
         },
         "mapdatId": 42,
-        "colourName": "Pink Terracotta"
+        "colourName": "Pink Terracotta",
+        "transparent": 0
     },
     "42": {
         "tonesRGB": {
@@ -9222,7 +9264,8 @@
             }
         },
         "mapdatId": 43,
-        "colourName": "Gray Terracotta"
+        "colourName": "Gray Terracotta",
+        "transparent": 0
     },
     "43": {
         "tonesRGB": {
@@ -9351,7 +9394,8 @@
             }
         },
         "mapdatId": 44,
-        "colourName": "Light Gray Terracotta"
+        "colourName": "Light Gray Terracotta",
+        "transparent": 0
     },
     "44": {
         "tonesRGB": {
@@ -9425,7 +9469,8 @@
             }
         },
         "mapdatId": 45,
-        "colourName": "Cyan Terracotta"
+        "colourName": "Cyan Terracotta",
+        "transparent": 0
     },
     "45": {
         "tonesRGB": {
@@ -9482,7 +9527,8 @@
             }
         },
         "mapdatId": 46,
-        "colourName": "Purple Terracotta"
+        "colourName": "Purple Terracotta",
+        "transparent": 0
     },
     "46": {
         "tonesRGB": {
@@ -9539,7 +9585,8 @@
             }
         },
         "mapdatId": 47,
-        "colourName": "Blue Terracotta"
+        "colourName": "Blue Terracotta",
+        "transparent": 0
     },
     "47": {
         "tonesRGB": {
@@ -9634,7 +9681,8 @@
             }
         },
         "mapdatId": 48,
-        "colourName": "Brown Terracotta"
+        "colourName": "Brown Terracotta",
+        "transparent": 0
     },
     "48": {
         "tonesRGB": {
@@ -9704,7 +9752,8 @@
             }
         },
         "mapdatId": 49,
-        "colourName": "Green Terracotta"
+        "colourName": "Green Terracotta",
+        "transparent": 0
     },
     "49": {
         "tonesRGB": {
@@ -9777,7 +9826,8 @@
             }
         },
         "mapdatId": 50,
-        "colourName": "Red Terracotta"
+        "colourName": "Red Terracotta",
+        "transparent": 0
     },
     "50": {
         "tonesRGB": {
@@ -9834,7 +9884,8 @@
             }
         },
         "mapdatId": 51,
-        "colourName": "Black Terracotta"
+        "colourName": "Black Terracotta",
+        "transparent": 0
     },
     "51": {
         "tonesRGB": {
@@ -9882,7 +9933,8 @@
             }
         },
         "mapdatId": 52,
-        "colourName": "Crimson Nylium"
+        "colourName": "Crimson Nylium",
+        "transparent": 0
     },
     "52": {
         "tonesRGB": {
@@ -10010,7 +10062,8 @@
             }
         },
         "mapdatId": 53,
-        "colourName": "Crimson Stem"
+        "colourName": "Crimson Stem",
+        "transparent": 0
     },
     "53": {
         "tonesRGB": {
@@ -10078,7 +10131,8 @@
             }
         },
         "mapdatId": 54,
-        "colourName": "Crimson Hyphae"
+        "colourName": "Crimson Hyphae",
+        "transparent": 0
     },
     "54": {
         "tonesRGB": {
@@ -10164,7 +10218,8 @@
             }
         },
         "mapdatId": 55,
-        "colourName": "Warped Nylium"
+        "colourName": "Warped Nylium",
+        "transparent": 0
     },
     "55": {
         "tonesRGB": {
@@ -10330,7 +10385,8 @@
             }
         },
         "mapdatId": 56,
-        "colourName": "Warped Stem"
+        "colourName": "Warped Stem",
+        "transparent": 0
     },
     "56": {
         "tonesRGB": {
@@ -10398,7 +10454,8 @@
             }
         },
         "mapdatId": 57,
-        "colourName": "Warped Hyphae"
+        "colourName": "Warped Hyphae",
+        "transparent": 0
     },
     "57": {
         "tonesRGB": {
@@ -10446,7 +10503,8 @@
             }
         },
         "mapdatId": 58,
-        "colourName": "Warped Wart"
+        "colourName": "Warped Wart",
+        "transparent": 0
     },
     "58": {
         "tonesRGB": {
@@ -10531,7 +10589,8 @@
             }
         },
         "mapdatId": 59,
-        "colourName": "Deepslate"
+        "colourName": "Deepslate",
+        "transparent": 0
     },
     "59": {
         "tonesRGB": {
@@ -10578,7 +10637,8 @@
             }
         },
         "mapdatId": 60,
-        "colourName": "Raw Iron"
+        "colourName": "Raw Iron",
+        "transparent": 0
     },
     "60": {
         "tonesRGB": {
@@ -10644,6 +10704,60 @@
             }
         },
         "mapdatId": 61,
-        "colourName": "Glow Lichen"
+        "colourName": "Glow Lichen",
+        "transparent": 0
+    },
+    "-1": {
+        "tonesRGB": {
+            "dark": [
+                0,
+                0,
+                0
+            ],
+            "normal": [
+                0,
+                0,
+                0
+            ],
+            "light": [
+                0,
+                0,
+                0
+            ],
+            "unobtainable": [
+                0,
+                0,
+                0
+            ]
+        },
+        "blocks": {
+            "0": {
+                "displayName": "Air Block",
+                "validVersions": {
+                    "1.12.2": {
+                        "NBTName": "air",
+                        "NBTArgs": {}
+                    },
+                    "1.13.2": "&1.12.2",
+                    "1.14.4": "&1.12.2",
+                    "1.15.2": "&1.12.2",
+                    "1.16.5": "&1.12.2",
+                    "1.17.1": "&1.12.2",
+                    "1.18.2": "&1.12.2",
+                    "1.19": "&1.12.2",
+                    "1.20": "&1.12.2",
+                    "1.21": "&1.12.2",
+                    "1.21.2": "&1.12.2",
+                    "1.21.4": "&1.12.2",
+                    "1.21.5": "&1.12.2"
+                },
+                "supportBlockMandatory": false,
+                "flammable": false,
+                "presetIndex": 0
+            }
+        },
+        "mapdatId": -1,
+        "colourName": "Transparent",
+        "transparent": 1
     }
 }

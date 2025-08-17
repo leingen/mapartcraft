@@ -302,7 +302,14 @@ class Map_NBT {
     Object.keys(nonZeroMaterials).forEach((colourSetId) => {
       this.palette_colourSetId_paletteId[colourSetId] = this.palette_paletteId_colourSetId.length;
       this.palette_paletteId_colourSetId.push(colourSetId);
+      //console.log(colourSetId, "NBT valid material");
     });
+
+    // Add transparent material
+    // let transColorId = "-1";
+    // this.palette_colourSetId_paletteId[transColorId] = this.palette_paletteId_colourSetId.length;
+    // this.palette_paletteId_colourSetId.push(transColorId);
+
     // finally add noobline/scaffold material at the end, special key
     this.palette_colourSetId_paletteId["NOOBLINE_SCAFFOLD"] = this.palette_paletteId_colourSetId.length;
     this.palette_paletteId_colourSetId.push("NOOBLINE_SCAFFOLD");
@@ -327,6 +334,7 @@ class Map_NBT {
           type: TagTypes.string,
           value: `minecraft:${blockNBTData.NBTName}`,
         };
+        //console.log(paletteItemToPush.Name.type, paletteItemToPush.Name.value, "NBT pushes");
         if (Object.keys(blockNBTData.NBTArgs).length !== 0) {
           paletteItemToPush.Properties = { type: TagTypes.compound, value: {} };
           Object.keys(blockNBTData.NBTArgs).forEach((NBTArg_key) => {
@@ -448,6 +456,7 @@ class Map_NBT {
       // }
 
       physicalColumn.push(this.returnPhysicalBlock(columnNumber, currentHeight, rowNumber + 1, coloursLayoutBlock.colourSetId));
+      //console.log("Final NBT colorID", coloursLayoutBlock.colourSetId);
       // the + 1 is because the noobline offsets everything South one block
 
       // read docs/supportBlocks.md to know how this works
@@ -660,6 +669,7 @@ class Map_NBT {
 
     this.NBT_json.value.blocks.value.value = this.NBT_json.value.blocks.value.value.concat(physicalColumn);
     this.columnHeightsCache.push(physicalColumn.reduce((a, b) => (a.pos.value.value[1] > b.pos.value.value[1] ? a : b)).pos.value.value[1]);
+    //console.log(physicalColumn)
   }
 
   setNBT_json_blocks() {
