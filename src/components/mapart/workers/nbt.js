@@ -400,6 +400,18 @@ class Map_NBT {
         }
         break;
       }
+      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_87.uniqueId: {
+        // start at y = 2 
+        currentHeight = 20;
+
+        // From column 2, decrease height by 1 for each 7 columns
+        if (columnNumber >= 1 && columnNumber < 126) {
+          currentHeight -= Math.floor((columnNumber - 1) / 7) + 1;
+        } else if (columnNumber >= 126){
+          currentHeight -= 18;
+        }
+        break;
+      }
       case MapModes.SCHEMATIC_NBT.staircaseModes.CLASSIC.uniqueId:
       case MapModes.SCHEMATIC_NBT.staircaseModes.VALLEY.uniqueId: {
         // this doesn't matter
@@ -659,7 +671,8 @@ class Map_NBT {
       case MapModes.SCHEMATIC_NBT.staircaseModes.FULL_DARK.uniqueId:
       case MapModes.SCHEMATIC_NBT.staircaseModes.FULL_LIGHT.uniqueId:
       case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_WE_871.uniqueId:
-        case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_27.uniqueId: {
+      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_27.uniqueId:
+      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_87.uniqueId: {
         break;
       }
       default: {

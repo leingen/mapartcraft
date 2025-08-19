@@ -124,6 +124,7 @@ class MapPreview extends Component {
         case MapModes.SCHEMATIC_NBT.staircaseModes.OFF.uniqueId:
         case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_WE_871.uniqueId:
         case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_27.uniqueId:
+        case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_87.uniqueId:
         case MapModes.SCHEMATIC_NBT.staircaseModes.CLASSIC.uniqueId:
         case MapModes.SCHEMATIC_NBT.staircaseModes.VALLEY.uniqueId:
         case MapModes.MAPDAT.staircaseModes.OFF.uniqueId: {

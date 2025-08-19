@@ -45,6 +45,13 @@
         "toneKeys": ["normal"],
         "extra": false
       }
+      ,
+      "STAGGERED_EW_87": {
+        "uniqueId": 13,
+        "localeKey": "MAP-SETTINGS/3D/STAGGERED_EW_87",
+        "toneKeys": ["normal"],
+        "extra": false
+      }
     }
   },
   "MAPDAT": {
