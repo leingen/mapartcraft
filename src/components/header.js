@@ -26,6 +26,13 @@ class Header extends Component {
           </a>
         </h3>
         <p>
+          <mark><b>I've made changes to the transparency implementation, PLEASE TEST IN CREATIVE BEFORE USING IT FOR REAL.</b></mark> 
+          <br></br>
+          <mark><b>Is very likely that Classic/Valley staircasing don't work properly with transparency.</b></mark> 
+          <br></br>
+          <mark><b>DM Leingen in Discord if there are any problems.</b></mark> 
+          <br></br>
+          <br></br>
           {getLocaleString("DESCRIPTION/1")}
           <a href="https://www.reddit.com/r/2b2t/" target="_blank" rel="noopener noreferrer">
             2b2t

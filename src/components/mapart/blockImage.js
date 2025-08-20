@@ -10,7 +10,6 @@ class BlockImage extends Component {
     const { getLocaleString, coloursJSON, colourSetId, blockId, style, className, ...props_others } = this.props;
     const isNone = blockId === "-1"; // if barrier / no block selected for colourSetId
     const isUnknown = colourSetId === "64" && blockId === "2"; // if unknown / placeholder block
-    const isTransparent = coloursJSON[colourSetId].transparent === 1;
     return (
       <img
         src={IMG_Null}
@@ -34,14 +33,6 @@ class BlockImage extends Component {
                 backgroundImage: `url(${IMG_Textures})`,
                 backgroundPositionX: "-200%",
                 backgroundPositionY: "-6400%",
-                ...style,
-              }
-            : isTransparent
-            ? {
-                backgroundImage: `url(${IMG_Textures})`,
-                backgroundPositionX: "-500%",
-                backgroundPositionY: "-6400%",
-                backgroundColor: "transparent",
                 ...style,
               }
             : coloursJSON[colourSetId].blocks[blockId].presetIndex === "CUSTOM"

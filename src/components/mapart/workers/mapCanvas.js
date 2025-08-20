@@ -259,70 +259,43 @@ function squaredEuclideanMetricColours(pixel1, pixel2) {
   }
 }
 
-function getTransparentSetIdAndToneAndRGB() {
-  let closestPixel;
-  closestPixel = {
-    colourSetId: "-1", // transparent
-    tone: "normal",
-  };
-  colourCache.set(0, closestPixel);
-
-  return closestPixel;
-  
-}
-
 function findClosestColourSetIdAndToneAndRGBTo(pixelRGB) {
   let RGBBinary = (pixelRGB[0] << 16) + (pixelRGB[1] << 8) + pixelRGB[2]; // injective mapping RGB to concatenated binaries
-
   if (colourCache.has(RGBBinary)) {
-    let tempRGB = colourCache.get(RGBBinary);
-    if (tempRGB.colourSetId !== "-1") {
-      return tempRGB;
-    }
-  }
+    return colourCache.get(RGBBinary);
+  } else {
+    let shortestDistance = 9999999;
+    let closestPixel;
 
-  let shortestDistance = 9999999;
-  let closestPixel;
-
-  colourSetsToUse.forEach((colourSet) => {
-    if (colourSet.colourSetId !== "-1") {
+    colourSetsToUse.forEach((colourSet) => {
       Object.keys(colourSet.tonesRGB).forEach((toneKey) => {
-        
-          const toneRGB = colourSet.tonesRGB[toneKey];
-          let squareDistance = squaredEuclideanMetricColours(toneRGB, pixelRGB);
-          if (squareDistance < shortestDistance) {
-            shortestDistance = squareDistance;
-            closestPixel = {
-              colourSetId: colourSet.colourSetId,
-              tone: toneKey,
-            };
-          }
+        const toneRGB = colourSet.tonesRGB[toneKey];
+        let squareDistance = squaredEuclideanMetricColours(toneRGB, pixelRGB);
+        if (squareDistance < shortestDistance) {
+          shortestDistance = squareDistance;
+          closestPixel = {
+            colourSetId: colourSet.colourSetId,
+            tone: toneKey,
+          };
+        }
       });
-    }
-  });
-  colourCache.set(RGBBinary, closestPixel);
-
-  return closestPixel;
-  
+    });
+    colourCache.set(RGBBinary, closestPixel);
+    return closestPixel;
+  }
 }
 
 function findClosest2ColourSetIdAndToneAndRGBTo(pixelRGB) {
   let RGBBinary = (pixelRGB[0] << 16) + (pixelRGB[1] << 8) + pixelRGB[2];
-
   if (colourCache.has(RGBBinary)) {
-    let tempRGB = colourCache.get(RGBBinary);
-    if (tempRGB.colourSetId !== "-1") {
-      return tempRGB;
-    }
-  }
+    return colourCache.get(RGBBinary);
+  } else {
+    let shortestDistance1 = 9999999;
+    let shortestDistance2 = 9999999;
+    let closestPixel1 = { colourSetId: null, tone: null }; // best colour
+    let closestPixel2 = { colourSetId: null, tone: null }; // second best colour
 
-  let shortestDistance1 = 9999999;
-  let shortestDistance2 = 9999999;
-  let closestPixel1 = { colourSetId: null, tone: null }; // best colour
-  let closestPixel2 = { colourSetId: null, tone: null }; // second best colour
-
-  colourSetsToUse.forEach((colourSet) => {
-    if (colourSet.colourSetId !== "-1") {
+    colourSetsToUse.forEach((colourSet) => {
       Object.keys(colourSet.tonesRGB).forEach((toneKey) => {
         const toneRGB = colourSet.tonesRGB[toneKey];
         let squareDistance = squaredEuclideanMetricColours(toneRGB, pixelRGB);
@@ -341,23 +314,20 @@ function findClosest2ColourSetIdAndToneAndRGBTo(pixelRGB) {
           };
         }
       });
+    });
+    if (
+      shortestDistance2 !== 9999999 && // to make sure closestPixel2.colourSetId/tone is not null
+      squaredEuclideanMetricColours(
+        colourSetIdAndToneToRGB(closestPixel1.colourSetId, closestPixel1.tone),
+        colourSetIdAndToneToRGB(closestPixel2.colourSetId, closestPixel2.tone)
+      ) <= shortestDistance2
+    ) {
+      closestPixel2 = closestPixel1; // if closestPixel1 is a better fit to closestPixel2 than closestPixel2 is to the actual pixel
     }
-  });
-
-  if (
-    shortestDistance2 !== 9999999 && // to make sure closestPixel2.colourSetId/tone is not null
-    squaredEuclideanMetricColours(
-      colourSetIdAndToneToRGB(closestPixel1.colourSetId, closestPixel1.tone),
-      colourSetIdAndToneToRGB(closestPixel2.colourSetId, closestPixel2.tone)
-    ) <= shortestDistance2
-  ) {
-    closestPixel2 = closestPixel1; // if closestPixel1 is a better fit to closestPixel2 than closestPixel2 is to the actual pixel
+    let newPixels = [shortestDistance1, shortestDistance2, closestPixel1, closestPixel2];
+    colourCache.set(RGBBinary, newPixels);
+    return newPixels;
   }
-  let newPixels = [shortestDistance1, shortestDistance2, closestPixel1, closestPixel2];
-  colourCache.set(RGBBinary, newPixels);
-
-  return newPixels;
-
 }
 
 function setupColourSetsToUse() {
@@ -408,16 +378,28 @@ function setupExactColourCache() {
 
 function exactRGBToColourSetIdAndTone(pixelRGB) {
   const RGBBinary = (pixelRGB[0] << 16) + (pixelRGB[1] << 8) + pixelRGB[2];
-  return exactColourCache.get(RGBBinary);
+  let colourSetIdAndTone;
+
+  if (exactColourCache.has(RGBBinary)){
+    colourSetIdAndTone = exactColourCache.get(RGBBinary);
+  } else {
+    // New "transparent" color isnt in cache, return a dummy ID/tone
+    colourSetIdAndTone = {
+      colourSetId: "TRANSPARENT", // transparent
+      tone: "normal",
+    };
+  }
+  console.log("Got ColourId ", colourSetIdAndTone.colourSetId, " and tone ", colourSetIdAndTone.tone);
+  return colourSetIdAndTone;
 }
 
 function isSupportBlockMandatoryForColourSetIdAndTone(colourSetIdAndTone) {
-  // if (coloursJSON[colourSetIdAndTone.colourSetId].transparent === 1) {
-  //   return false; // transparent blocks are never mandatory
-  // }else {
-  //   return coloursJSON[colourSetIdAndTone.colourSetId].blocks[selectedBlocks[colourSetIdAndTone.colourSetId]].supportBlockMandatory;
-  // }
-  return coloursJSON[colourSetIdAndTone.colourSetId].blocks[selectedBlocks[colourSetIdAndTone.colourSetId]].supportBlockMandatory;
+  console.log(colourSetIdAndTone);
+  if (colourSetIdAndTone.colourSetId === "TRANSPARENT" ) {
+    return false;
+  } else {
+    return coloursJSON[colourSetIdAndTone.colourSetId].blocks[selectedBlocks[colourSetIdAndTone.colourSetId]].supportBlockMandatory;
+  }
 }
 
 function colourSetIdAndToneToRGB(colourSetId, tone) {
@@ -499,18 +481,8 @@ function getMapartImageDataAndMaterials() {
     
     //console.log("Do pixel with A", canvasImageData.data[indexA]);
     let closestColourSetIdAndTone;
-    // if (
-    //   optionValue_modeNBTOrMapdat === MapModes.MAPDAT.uniqueId &&
-    //   optionValue_transparency &&
-    //   canvasImageData.data[indexA] < optionValue_transparencyTolerance
-    // ) {
-    //   // we specially reserve 0,0,0,0 for transparent in mapdats
-    //   canvasImageData.data[indexR] = 0;
-    //   canvasImageData.data[indexG] = 0;
-    //   canvasImageData.data[indexB] = 0;
-    //   canvasImageData.data[indexA] = 0;
-    // }
     if (
+      // optionValue_modeNBTOrMapdat === MapModes.MAPDAT.uniqueId &&
       optionValue_transparency &&
       canvasImageData.data[indexA] < optionValue_transparencyTolerance
     ) {
@@ -520,11 +492,6 @@ function getMapartImageDataAndMaterials() {
       canvasImageData.data[indexG] = 0;
       canvasImageData.data[indexB] = 0;
       canvasImageData.data[indexA] = 0;
-
-      if (optionValue_modeNBTOrMapdat === MapModes.SCHEMATIC_NBT.uniqueId) {
-        closestColourSetIdAndTone = getTransparentSetIdAndToneAndRGB();
-        maps[whichMap_y][whichMap_x].materials[closestColourSetIdAndTone.colourSetId] += 1;
-      }
       
     } else {
       //let prevA = canvasImageData.data[indexA];
