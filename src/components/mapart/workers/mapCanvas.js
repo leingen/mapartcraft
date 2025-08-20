@@ -389,12 +389,12 @@ function exactRGBToColourSetIdAndTone(pixelRGB) {
       tone: "normal",
     };
   }
-  console.log("Got ColourId ", colourSetIdAndTone.colourSetId, " and tone ", colourSetIdAndTone.tone);
+  // console.log("Got ColourId ", colourSetIdAndTone.colourSetId, " and tone ", colourSetIdAndTone.tone);
   return colourSetIdAndTone;
 }
 
 function isSupportBlockMandatoryForColourSetIdAndTone(colourSetIdAndTone) {
-  console.log(colourSetIdAndTone);
+  // console.log(colourSetIdAndTone);
   if (colourSetIdAndTone.colourSetId === "TRANSPARENT" ) {
     return false;
   } else {
