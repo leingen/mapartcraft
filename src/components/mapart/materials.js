@@ -233,9 +233,13 @@ class Materials extends Component {
           RGBBinary = (currentMaterialsData.pixelsData[pixelsData_offset] << 16) + 
                       (currentMaterialsData.pixelsData[pixelsData_offset + 1] << 8) + 
                       currentMaterialsData.pixelsData[pixelsData_offset + 2];
-          colourSetIdAndTone = exactColourCache.get(RGBBinary);
-          materialsCount[colourSetIdAndTone.colourSetId] += 1;
-          console.log("mapCol", columnNumber, "mapRow", rowNumber, "PixOffset", pixelsData_offset, "colorID", colourSetIdAndTone.colourSetId);
+
+          if (exactColourCache.has(RGBBinary)) {
+            colourSetIdAndTone = exactColourCache.get(RGBBinary);
+            materialsCount[colourSetIdAndTone.colourSetId] += 1;
+          }
+          
+          //console.log("mapCol", columnNumber, "mapRow", rowNumber, "PixOffset", pixelsData_offset, "colorID", colourSetIdAndTone.colourSetId);
         }
       }
     }
