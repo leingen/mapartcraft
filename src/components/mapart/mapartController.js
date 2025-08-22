@@ -973,6 +973,7 @@ class MapartController extends Component {
             <Materials
               getLocaleString={getLocaleString}
               coloursJSON={coloursJSON}
+              optionValue_staircasing={optionValue_staircasing}
               optionValue_version={optionValue_version}
               optionValue_supportBlock={optionValue_supportBlock}
               currentMaterialsData={currentMaterialsData}
