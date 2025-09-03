@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import "./header.css";
-import IMG_Wubby from "../images/wubby.png";
 
 class Header extends Component {
   render() {
@@ -26,26 +25,10 @@ class Header extends Component {
             2b2t Mapart Discord
           </a>
         </h3>
-        
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <img 
-            alt="wubby.png" 
-            src={IMG_Wubby} 
-            style={{ maxWidth: "120px", marginRight: "20px" }} 
-          />
-          
-          <div>
-            <b>I've made changes to the transparency implementation, PLEASE TEST IN CREATIVE BEFORE USING IT FOR REAL.</b>
-            <br />
-            <b>It is very likely that Classic/Valley staircasing don't work properly with transparency.</b>
-            <br />
-            <b>Also added new option to see materials per layer (if staggered staircasing), and glass as support block.</b>
-            <br />
-            <b>DM Leingen on Discord if there are any problems.</b>
-          </div>
-        </div>
 
         <p>
+        <b>I've added transparency and staggered staircasing for carpet water canvas, PLEASE TEST IN CREATIVE BEFORE USING IT FOR REAL.</b>
+          <br></br>
         <br></br>
           {getLocaleString("DESCRIPTION/1")}
           <a href="https://www.reddit.com/r/2b2t/" target="_blank" rel="noopener noreferrer">

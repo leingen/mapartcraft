@@ -574,7 +574,7 @@ class MapartController extends Component {
           });
       }
     }
-    return "https://mike2b2t.github.io/mapartcraft/?preset=" + presetQueryString;
+    return "https://leingen.github.io/mapartcraft/?preset=" + presetQueryString;
   };
 
   handleSharePreset = () => {
