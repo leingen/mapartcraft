@@ -39,15 +39,20 @@
         "toneKeys": ["normal"],
         "extra": false
       },
-      "STAGGERED_EW_27": {
+      "STAGGERED_WE_72": {
         "uniqueId": 12,
+        "localeKey": "MAP-SETTINGS/3D/STAGGERED_WE_72",
+        "toneKeys": ["normal"],
+        "extra": false
+      },
+      "STAGGERED_EW_27": {
+        "uniqueId": 13,
         "localeKey": "MAP-SETTINGS/3D/STAGGERED_EW_27",
         "toneKeys": ["normal"],
         "extra": false
-      }
-      ,
+      },
       "STAGGERED_EW_87": {
-        "uniqueId": 13,
+        "uniqueId": 14,
         "localeKey": "MAP-SETTINGS/3D/STAGGERED_EW_87",
         "toneKeys": ["normal"],
         "extra": false

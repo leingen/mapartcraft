@@ -92,6 +92,7 @@ class Materials extends Component {
     let retVal = false;
     switch (optionValue_staircasing) {
       case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_WE_871.uniqueId:
+      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_WE_72.uniqueId:
       case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_27.uniqueId:
       case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_87.uniqueId: {
         retVal = true;
@@ -114,6 +115,7 @@ class Materials extends Component {
         retVal = layerColumns.length - 1;
         break;
       }
+      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_WE_72.uniqueId:
       case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_27.uniqueId: {
         let layerColumns = [7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,2];
         retVal = layerColumns.length - 1;
@@ -144,7 +146,8 @@ class Materials extends Component {
           layerColumns = [8,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,1];
           break;
         }
-        case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_27.uniqueId: {
+        case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_27.uniqueId:
+        case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_WE_72.uniqueId: {
           layerColumns = [7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,2];
           break;
         }

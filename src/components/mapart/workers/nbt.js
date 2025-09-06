@@ -394,6 +394,16 @@ class Map_NBT {
         }
         break;
       }
+      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_WE_72.uniqueId: {
+        // start at y = 2 
+        currentHeight = 2;
+
+        // From column 7, increase height by 1 for each 7 columns
+        if (columnNumber >= 7) {
+          currentHeight += Math.min(18, Math.floor((columnNumber - 7) / 7) + 1);
+        }
+        break;
+      }
       case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_27.uniqueId: {
         // start at y = 2 
         currentHeight = 20;
@@ -408,7 +418,7 @@ class Map_NBT {
         // start at y = 2 
         currentHeight = 20;
 
-        // From column 2, decrease height by 1 for each 7 columns
+        // From column 1, decrease height by 1 for each 7 columns
         if (columnNumber >= 1 && columnNumber < 126) {
           currentHeight -= Math.floor((columnNumber - 1) / 7) + 1;
         } else if (columnNumber >= 126){
@@ -685,6 +695,7 @@ class Map_NBT {
       case MapModes.SCHEMATIC_NBT.staircaseModes.FULL_DARK.uniqueId:
       case MapModes.SCHEMATIC_NBT.staircaseModes.FULL_LIGHT.uniqueId:
       case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_WE_871.uniqueId:
+      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_WE_72.uniqueId:
       case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_27.uniqueId:
       case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_87.uniqueId: {
         break;

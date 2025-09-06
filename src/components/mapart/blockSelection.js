@@ -26,6 +26,7 @@ class BlockSelection extends Component {
       case MapModes.SCHEMATIC_NBT.staircaseModes.OFF.uniqueId:
       case MapModes.MAPDAT.staircaseModes.OFF.uniqueId:
       case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_WE_871.uniqueId:
+      case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_WE_72.uniqueId:
       case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_27.uniqueId:
       case MapModes.SCHEMATIC_NBT.staircaseModes.STAGGERED_EW_87.uniqueId: {
         background = this.cssRGB(colourSet.tonesRGB.normal);
