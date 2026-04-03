@@ -56,6 +56,7 @@ class MapartController extends Component {
     preProcessingValue_backgroundColourSelect: BackgroundColourModes.OFF.uniqueId,
     preProcessingValue_backgroundColour: "#151515",
     optionValue_extras_moreStaircasingOptions: false,
+    mapPreviewSizeScale: 2,
     uploadedImage: null,
     uploadedImage_baseFilename: null,
     presets: [],
@@ -68,6 +69,10 @@ class MapartController extends Component {
     mapPreviewWorker_inProgress: false,
     viewOnline_NBT: null,
     viewOnline_3D: false,
+    mapSettingsPresets: [],
+    selectedMapSettingsPresetName: "None",
+    mapSettingsSaveInputVisible: false,
+    mapSettingsSaveInputValue: "",
   };
 
   constructor(props) {
@@ -101,6 +106,15 @@ class MapartController extends Component {
     const supportedVersionFound = Object.values(SupportedVersions).find((supportedVersion) => supportedVersion.MCVersion === cookieMCVersion);
     if (supportedVersionFound !== undefined) {
       this.state.optionValue_version = supportedVersionFound;
+    }
+
+    const savedMapSettingsPresets = localStorage.getItem("mapartcraft_mapSettingsPresets");
+    if (savedMapSettingsPresets) {
+      try {
+        this.state.mapSettingsPresets = JSON.parse(savedMapSettingsPresets);
+      } catch (e) {
+        this.state.mapSettingsPresets = [];
+      }
     }
 
     const URLParams = new URL(window.location).searchParams;
@@ -769,6 +783,169 @@ class MapartController extends Component {
     CookieManager.setCookie("mapartcraft_customBlocks", JSON.stringify(customBlocks_new));
   };
 
+  onIncreasePreviewScale = () => {
+    this.setState((s) => ({ mapPreviewSizeScale: s.mapPreviewSizeScale * 1.2 }));
+  };
+
+  onDecreasePreviewScale = () => {
+    this.setState((s) => ({ mapPreviewSizeScale: s.mapPreviewSizeScale / 1.2 }));
+  };
+
+  getCurrentMapSettings = () => {
+    const {
+      optionValue_modeNBTOrMapdat,
+      optionValue_mapSize_x,
+      optionValue_mapSize_y,
+      optionValue_cropImage,
+      optionValue_cropImage_zoom,
+      optionValue_cropImage_percent_x,
+      optionValue_cropImage_percent_y,
+      optionValue_showGridOverlay,
+      optionValue_staircasing,
+      optionValue_whereSupportBlocks,
+      optionValue_supportBlock,
+      optionValue_transparency,
+      optionValue_transparencyTolerance,
+      optionValue_mapdatFilenameUseId,
+      optionValue_mapdatFilenameIdStart,
+      optionValue_betterColour,
+      optionValue_dithering,
+      optionValue_dithering_propagation_red,
+      optionValue_dithering_propagation_green,
+      optionValue_dithering_propagation_blue,
+      optionValue_preprocessingEnabled,
+      preProcessingValue_brightness,
+      preProcessingValue_contrast,
+      preProcessingValue_saturation,
+      preProcessingValue_backgroundColourSelect,
+      preProcessingValue_backgroundColour,
+      optionValue_extras_moreStaircasingOptions,
+      mapPreviewSizeScale,
+    } = this.state;
+    return {
+      optionValue_modeNBTOrMapdat,
+      optionValue_mapSize_x,
+      optionValue_mapSize_y,
+      optionValue_cropImage,
+      optionValue_cropImage_zoom,
+      optionValue_cropImage_percent_x,
+      optionValue_cropImage_percent_y,
+      optionValue_showGridOverlay,
+      optionValue_staircasing,
+      optionValue_whereSupportBlocks,
+      optionValue_supportBlock,
+      optionValue_transparency,
+      optionValue_transparencyTolerance,
+      optionValue_mapdatFilenameUseId,
+      optionValue_mapdatFilenameIdStart,
+      optionValue_betterColour,
+      optionValue_dithering,
+      optionValue_dithering_propagation_red,
+      optionValue_dithering_propagation_green,
+      optionValue_dithering_propagation_blue,
+      optionValue_preprocessingEnabled,
+      preProcessingValue_brightness,
+      preProcessingValue_contrast,
+      preProcessingValue_saturation,
+      preProcessingValue_backgroundColourSelect,
+      preProcessingValue_backgroundColour,
+      optionValue_extras_moreStaircasingOptions,
+      mapPreviewSizeScale,
+    };
+  };
+
+  handleMapSettingsPresetChange = (e) => {
+    const name = e.target.value;
+    const { mapSettingsPresets } = this.state;
+    this.setState({ selectedMapSettingsPresetName: name });
+    if (name === "None") return;
+    const preset = mapSettingsPresets.find((p) => p.name === name);
+    if (preset) {
+      this.setState({ ...preset.settings });
+    }
+  };
+
+  handleMapSettingsSaveBegin = () => {
+    this.setState({ mapSettingsSaveInputVisible: true, mapSettingsSaveInputValue: "" });
+  };
+
+  handleMapSettingsSaveCancel = () => {
+    this.setState({ mapSettingsSaveInputVisible: false, mapSettingsSaveInputValue: "" });
+  };
+
+  handleMapSettingsSaveInputChange = (e) => {
+    this.setState({ mapSettingsSaveInputValue: e.target.value });
+  };
+
+  handleMapSettingsSaveConfirm = () => {
+    const { mapSettingsPresets, mapSettingsSaveInputValue } = this.state;
+    const name = mapSettingsSaveInputValue.trim();
+    if (!name) return;
+    const exists = mapSettingsPresets.some((p) => p.name === name);
+    if (exists && !window.confirm(`A settings preset named "${name}" already exists. Overwrite?`)) return;
+    const newPreset = { name, settings: this.getCurrentMapSettings() };
+    const updated = [...mapSettingsPresets.filter((p) => p.name !== name), newPreset];
+    this.setState({
+      mapSettingsPresets: updated,
+      selectedMapSettingsPresetName: name,
+      mapSettingsSaveInputVisible: false,
+      mapSettingsSaveInputValue: "",
+    });
+    localStorage.setItem("mapartcraft_mapSettingsPresets", JSON.stringify(updated));
+  };
+
+  handleMapSettingsExport = () => {
+    const { mapSettingsPresets, selectedMapSettingsPresetName } = this.state;
+    if (selectedMapSettingsPresetName === "None") return;
+    const preset = mapSettingsPresets.find((p) => p.name === selectedMapSettingsPresetName);
+    if (!preset) return;
+    const blob = new Blob([JSON.stringify(preset, null, 2)], { type: "application/json" });
+    this.downloadBlobFile(blob, `${selectedMapSettingsPresetName}.mapartSettings.json`);
+  };
+
+  handleMapSettingsDelete = () => {
+    const { mapSettingsPresets, selectedMapSettingsPresetName } = this.state;
+    if (selectedMapSettingsPresetName === "None") return;
+    if (!window.confirm(`Delete settings preset "${selectedMapSettingsPresetName}"? This cannot be undone.`)) return;
+    const updated = mapSettingsPresets.filter((p) => p.name !== selectedMapSettingsPresetName);
+    // intentionally do NOT touch any optionValue_ state — current GUI settings stay as-is
+    this.setState({
+      mapSettingsPresets: updated,
+      selectedMapSettingsPresetName: "None",
+    });
+    localStorage.setItem("mapartcraft_mapSettingsPresets", JSON.stringify(updated));
+  };
+
+  handleMapSettingsImport = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      try {
+        const parsed = JSON.parse(evt.target.result);
+        if (!parsed.name || !parsed.settings) {
+          alert("Invalid settings file: missing name or settings fields.");
+          return;
+        }
+        const { mapSettingsPresets } = this.state;
+        const exists = mapSettingsPresets.some((p) => p.name === parsed.name);
+        if (exists && !window.confirm(`A settings preset named "${parsed.name}" already exists. Overwrite?`)) return;
+        const updated = [...mapSettingsPresets.filter((p) => p.name !== parsed.name), { name: parsed.name, settings: parsed.settings }];
+        this.setState({
+          mapSettingsPresets: updated,
+          selectedMapSettingsPresetName: parsed.name,
+          ...parsed.settings,
+        });
+        localStorage.setItem("mapartcraft_mapSettingsPresets", JSON.stringify(updated));
+      } catch (err) {
+        alert("Failed to read settings file. Make sure it is a valid .mapartSettings.json export.");
+      }
+    };
+    reader.readAsText(file);
+    // reset the input so the same file can be re-imported if needed
+    e.target.value = "";
+  };
+
   render() {
     const { getLocaleString } = this.props;
     const {
@@ -803,6 +980,7 @@ class MapartController extends Component {
       preProcessingValue_backgroundColourSelect,
       preProcessingValue_backgroundColour,
       optionValue_extras_moreStaircasingOptions,
+      mapPreviewSizeScale,
       uploadedImage,
       uploadedImage_baseFilename,
       presets,
@@ -811,6 +989,10 @@ class MapartController extends Component {
       mapPreviewWorker_inProgress,
       viewOnline_NBT,
       viewOnline_3D,
+      mapSettingsPresets,
+      selectedMapSettingsPresetName,
+      mapSettingsSaveInputVisible,
+      mapSettingsSaveInputValue,
     } = this.state;
     return (
       <div className="mapartController">
@@ -869,6 +1051,9 @@ class MapartController extends Component {
             onFileDialogEvent={this.onFileDialogEvent}
             onGetMapMaterials={this.handleSetMapMaterials}
             onMapPreviewWorker_begin={this.onMapPreviewWorker_begin}
+            mapPreviewSizeScale={mapPreviewSizeScale}
+            onIncreasePreviewScale={this.onIncreasePreviewScale}
+            onDecreasePreviewScale={this.onDecreasePreviewScale}
           />
           <div style={{ display: "block" }}>
             <MapSettings
@@ -930,6 +1115,18 @@ class MapartController extends Component {
               onOptionChange_PreProcessingBackgroundColour={this.onOptionChange_PreProcessingBackgroundColour}
               optionValue_extras_moreStaircasingOptions={optionValue_extras_moreStaircasingOptions}
               onOptionChange_extras_moreStaircasingOptions={this.onOptionChange_extras_moreStaircasingOptions}
+              mapSettingsPresets={mapSettingsPresets}
+              selectedMapSettingsPresetName={selectedMapSettingsPresetName}
+              mapSettingsSaveInputVisible={mapSettingsSaveInputVisible}
+              mapSettingsSaveInputValue={mapSettingsSaveInputValue}
+              onMapSettingsPresetChange={this.handleMapSettingsPresetChange}
+              onMapSettingsSaveBegin={this.handleMapSettingsSaveBegin}
+              onMapSettingsSaveCancel={this.handleMapSettingsSaveCancel}
+              onMapSettingsSaveInputChange={this.handleMapSettingsSaveInputChange}
+              onMapSettingsSaveConfirm={this.handleMapSettingsSaveConfirm}
+              onMapSettingsExport={this.handleMapSettingsExport}
+              onMapSettingsImport={this.handleMapSettingsImport}
+              onMapSettingsDelete={this.handleMapSettingsDelete}
             />
             <GreenButtons
               getLocaleString={getLocaleString}

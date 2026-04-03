@@ -19,7 +19,6 @@ import "./mapPreview.css";
 
 class MapPreview extends Component {
   state = {
-    mapPreviewSizeScale: 2,
     workerProgress: 0,
   };
 
@@ -356,15 +355,11 @@ class MapPreview extends Component {
   }
 
   increasePreviewScale = () => {
-    this.setState({
-      mapPreviewSizeScale: this.state.mapPreviewSizeScale * 1.2,
-    });
+    this.props.onIncreasePreviewScale();
   };
 
   decreasePreviewScale = () => {
-    this.setState({
-      mapPreviewSizeScale: this.state.mapPreviewSizeScale / 1.2,
-    });
+    this.props.onDecreasePreviewScale();
   };
 
   componentWillUnmount() {
@@ -374,14 +369,15 @@ class MapPreview extends Component {
   render() {
     const {
       getLocaleString,
-      optionValue_mapSize_x, // map size in maps
+      optionValue_mapSize_x,
       optionValue_mapSize_y,
       optionValue_cropImage,
       optionValue_showGridOverlay,
       onFileDialogEvent,
       uploadedImage,
+      mapPreviewSizeScale,
     } = this.props;
-    const { mapPreviewSizeScale, workerProgress } = this.state;
+    const { workerProgress } = this.state;
     return (
       <div className="section mapPreviewDiv">
         <h2>{getLocaleString("MAP-PREVIEW/TITLE")}</h2>

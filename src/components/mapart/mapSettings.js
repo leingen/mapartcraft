@@ -77,6 +77,18 @@ class MapSettings extends Component {
       onOptionChange_PreProcessingBackgroundColour,
       optionValue_extras_moreStaircasingOptions,
       onOptionChange_extras_moreStaircasingOptions,
+      mapSettingsPresets,
+      selectedMapSettingsPresetName,
+      mapSettingsSaveInputVisible,
+      mapSettingsSaveInputValue,
+      onMapSettingsPresetChange,
+      onMapSettingsSaveBegin,
+      onMapSettingsSaveCancel,
+      onMapSettingsSaveInputChange,
+      onMapSettingsSaveConfirm,
+      onMapSettingsExport,
+      onMapSettingsImport,
+      onMapSettingsDelete,
     } = this.props;
     const setting_mode = (
       <React.Fragment>
@@ -842,9 +854,61 @@ class MapSettings extends Component {
         </details>
       </React.Fragment>
     );
+    const importInputRef = React.createRef();
+    const settingGroup_mapSettingsPresets = (
+      <div className="settingsGroup" style={{ marginBottom: "8px" }}>
+        <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "4px" }}>
+          <b>{"Settings preset:"}</b>{" "}
+          <select value={selectedMapSettingsPresetName} onChange={onMapSettingsPresetChange}>
+            <option value="None">{"— None —"}</option>
+            {mapSettingsPresets.map((p) => (
+              <option key={p.name} value={p.name}>
+                {p.name}
+              </option>
+            ))}
+          </select>{" "}
+          <button onClick={onMapSettingsDelete} disabled={selectedMapSettingsPresetName === "None"} title={"Delete selected preset"}>
+            {"Delete"}
+          </button>{" "}
+          <button onClick={onMapSettingsSaveBegin}>{"Save"}</button>{" "}
+          <button onClick={onMapSettingsExport} disabled={selectedMapSettingsPresetName === "None"} title={"Export selected preset to a file"}>
+            {"Export"}
+          </button>{" "}
+          <button onClick={() => importInputRef.current && importInputRef.current.click()} title={"Import a preset from a file"}>
+            {"Import"}
+          </button>
+          <input
+            ref={importInputRef}
+            type="file"
+            accept=".json,.mapartSettings.json"
+            style={{ display: "none" }}
+            onChange={onMapSettingsImport}
+          />
+        </div>
+        {mapSettingsSaveInputVisible && (
+          <div style={{ display: "flex", alignItems: "center", gap: "4px", marginTop: "4px" }}>
+            <input
+              type="text"
+              value={mapSettingsSaveInputValue}
+              onChange={onMapSettingsSaveInputChange}
+              placeholder={"Preset name…"}
+              style={{ width: "12em" }}
+              autoFocus
+              onKeyDown={(e) => {
+                if (e.key === "Enter") onMapSettingsSaveConfirm();
+                if (e.key === "Escape") onMapSettingsSaveCancel();
+              }}
+            />
+            <button onClick={onMapSettingsSaveConfirm}>{"Save"}</button>
+            <button onClick={onMapSettingsSaveCancel}>{"Cancel"}</button>
+          </div>
+        )}
+      </div>
+    );
     const settingsDiv = (
       <div className="section settingsDiv">
         <h2>{getLocaleString("MAP-SETTINGS/TITLE")}</h2>
+        {settingGroup_mapSettingsPresets}
         {setting_mode}
         {setting_version}
         {setting_mapSize}
